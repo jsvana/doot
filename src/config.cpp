@@ -4,12 +4,12 @@
 #include <fstream>
 #include <iostream>
 
-// TODO(jsvana): <experimental/filesystem> would make this so much easier...
-const std::string Config::get_output_path() {
-  auto suffix = path_.substr(PUBLIC_PREFIX.length());
-  std::string home = std::getenv("HOME");
+const fs::path Config::get_output_path() {
+  // TODO(jsvana): make this line not suck
+  fs::path suffix = "." + path_.substr(PUBLIC_PREFIX.length());
+  fs::path home = std::getenv("HOME");
   // TODO(jsvana): support directories in paths (like .ssh/config)
-  return home + "/." + suffix;
+  return home / suffix;
 }
 
 bool Config::write_private(const std::string& private_path, std::ofstream& out_f) {

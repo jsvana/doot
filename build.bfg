@@ -13,4 +13,7 @@ executable(
       "-std=c++1z",
       "-ggdb",
     ],
+    packages=[
+      system_package("stdc++fs"),
+    ],
 )
