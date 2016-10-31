@@ -34,16 +34,21 @@ bool Config::write() {
 
   if (!config_f.is_open()) {
     std::cerr << "Unable to open config file \"" << path_ << "\"" << std::endl;
-    return 1;
+    return false;
   }
 
+  // TODO(jsvana): write to temp file and then copy to location
   auto output_path = get_output_path();
+  if (fs::exists(output_path)) {
+    std::cerr << "File " << output_path << " already exists" << std::endl;
+    return false;
+  }
   std::cout << "Writing to " << output_path << std::endl;
   std::ofstream out_f(output_path);
 
   if (!out_f.is_open()) {
     std::cerr << "Unable to open destination config file \"" << output_path << "\"" << std::endl;
-    return 1;
+    return false;
   }
 
   std::string line;
@@ -53,12 +58,12 @@ bool Config::write() {
       auto space = line.find(' ');
       if (space == std::string::npos) {
         std::cerr << "Malformed config (line " << line_num << "): .include requires an argument" << std::endl;
-        return 1;
+        return false;
       }
 
       if (line.find(' ', space + 1) != std::string::npos) {
         std::cerr << "Malformed config (line " << line_num << "): .include takes only one argument" << std::endl;
-        return 1;
+        return false;
       }
 
       write_private(PRIVATE_PREFIX + line.substr(space + 1), out_f);
