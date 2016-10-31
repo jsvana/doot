@@ -1,0 +1,16 @@
+# -*- python -*-
+
+project("doot")
+
+executable(
+    "doot",
+    files=find_files("src", "*.cpp"),
+    compile_options=[
+      "-Wall",
+      "-Wextra",
+      "-pedantic",
+      "-Wno-deprecated-declarations",
+      "-std=c++1z",
+      "-ggdb",
+    ],
+)
