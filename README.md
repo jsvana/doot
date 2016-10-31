@@ -2,7 +2,7 @@
 
 `doot` is Yet Another Dotfiles Manager(TM). Its novel feature is the automatic merging and updating of dotfiles with includes. This is useful for configuration systems that don't have an include mechanism.
 
-## Example
+## Usage
 
 Dotfiles directory layout:
 
@@ -36,6 +36,10 @@ As an example, let's use `.ssh/config`:
     Host super_secret_host
       HostName secret.host.name
       Port 12345
+
+To use the literal string `.include` in your configs, prefix it with `\` like so:
+
+    \.include
 
 ## Motivation
 

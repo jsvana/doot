@@ -62,6 +62,9 @@ bool Config::write() {
       }
 
       write_private(PRIVATE_PREFIX + line.substr(space + 1), out_f);
+    } else if (line.find("\\.include") == 0) {
+      // Allow literal .include
+      out_f << line.substr(1) << std::endl;
     } else {
       out_f << line << std::endl;
     }
