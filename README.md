@@ -7,10 +7,10 @@
 Dotfiles directory layout:
 
 <dl>
-  <dt>`dotfiles/`</dt>
+  <dt>dotfiles/</dt>
   <dd>This includes all of your public-facing contents. Add any number of `.include path/in/private` directives. This should be synced to your repository.</dd>
 
-  <dt>`private/`</dt>
+  <dt>private/</dt>
   <dd>This includes all of your private included configs. This should be in your `.gitignore`.</dd>
 </dl>
 
@@ -46,6 +46,8 @@ To use the literal string `.include` in your configs, prefix it with `\` like so
 Scowering documentation for all the different include mechanism for systems (and eventually finding that they don't exist) is really frustrating. Instead, I propose a [15th Standard](https://xkcd.com/927/) to solve the problem.
 
 ## Installation
+
+Currently you'll need a compiler with C++1z support (I'm using G++ 6.2.1). This also only supports Linux.
 
     $ bfg9000 configure build
     $ cd build
